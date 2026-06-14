@@ -7,7 +7,7 @@ $password = '';
 
 try {
     $pdo = new PDO(
-        "mysql:host=$host;dbname=$dbname;charset=utf8",
+        "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
         $user,
         $password
     );
@@ -16,9 +16,6 @@ try {
         PDO::ATTR_ERRMODE,
         PDO::ERRMODE_EXCEPTION
     );
-
-} catch(PDOException $e) {
-
+} catch (PDOException $e) {
     exit('DB接続エラー: ' . $e->getMessage());
-
 }

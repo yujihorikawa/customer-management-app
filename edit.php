@@ -1,7 +1,7 @@
 <?php
 
-session_start();
-
+require 'auth.php';
+requireLogin();
 require 'db.php';
 
 $id = $_GET['id'] ?? '';
@@ -11,9 +11,7 @@ if ($id === '') {
 }
 
 $sql = "SELECT * FROM customers WHERE id = :id";
-
 $stmt = $pdo->prepare($sql);
-
 $stmt->execute([
     ':id' => $id
 ]);
@@ -41,7 +39,6 @@ unset($_SESSION['errors'], $_SESSION['old']);
 <body>
 
 <div class="container">
-
 <h1>顧客編集</h1>
 
 <?php if (!empty($errors)): ?>
@@ -55,7 +52,6 @@ unset($_SESSION['errors'], $_SESSION['old']);
 <?php endif; ?>
 
 <form action="update.php" method="post">
-
 <input
   type="hidden"
   name="id"
@@ -81,6 +77,15 @@ unset($_SESSION['errors'], $_SESSION['old']);
 </p>
 
 <p>
+メールアドレス
+<input
+  type="email"
+  name="email"
+  value="<?= htmlspecialchars($old['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>"
+>
+</p>
+
+<p>
 会社名
 <input
   type="text"
@@ -90,13 +95,11 @@ unset($_SESSION['errors'], $_SESSION['old']);
 </p>
 
 <button type="submit">更新</button>
-
 </form>
 
 <p>
 <a href="index.php">一覧へ戻る</a>
 </p>
-
 </div>
 
 </body>

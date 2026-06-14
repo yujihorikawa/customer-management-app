@@ -3,6 +3,7 @@ body {
   background-color: #f5f7fa;
   color: #333;
   padding: 40px;
+  line-height: 1.6;
 }
 
 .container {
@@ -10,13 +11,37 @@ body {
   margin: 0 auto;
   background: #fff;
   padding: 32px;
-  border-radius: 12px;
+  border-radius: 8px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
-h1 {
+.login-container {
+  max-width: 460px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
   margin-bottom: 24px;
+}
+
+h1 {
+  margin: 0 0 24px;
   color: #222;
+}
+
+.page-header h1 {
+  margin-bottom: 0;
+}
+
+.user-menu {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  color: #666;
+  font-size: 14px;
 }
 
 a {
@@ -46,6 +71,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   background: #fff;
+  font-size: 14px;
 }
 
 th {
@@ -58,6 +84,7 @@ th {
 td {
   padding: 12px;
   border-bottom: 1px solid #e5e7eb;
+  vertical-align: top;
 }
 
 tr:hover {
@@ -89,6 +116,7 @@ button:hover,
 
 .search-form {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 20px;
   align-items: center;
@@ -114,4 +142,24 @@ button:hover,
 .error-box ul {
   margin: 0;
   padding-left: 20px;
+}
+
+.actions {
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 16px;
+  }
+
+  .container {
+    padding: 20px;
+    overflow-x: auto;
+  }
+
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }

@@ -1,11 +1,13 @@
 <?php
 
-session_start();
+require 'auth.php';
+requireLogin();
 
 $errors = $_SESSION['errors'] ?? [];
 $old = $_SESSION['old'] ?? [
     'name' => '',
     'phone' => '',
+    'email' => '',
     'company' => ''
 ];
 
@@ -23,7 +25,6 @@ unset($_SESSION['errors'], $_SESSION['old']);
 <body>
 
 <div class="container">
-
 <h1>顧客登録</h1>
 
 <?php if (!empty($errors)): ?>
@@ -37,7 +38,6 @@ unset($_SESSION['errors'], $_SESSION['old']);
 <?php endif; ?>
 
 <form action="store.php" method="post">
-
 <p>
 名前
 <input
@@ -57,6 +57,15 @@ unset($_SESSION['errors'], $_SESSION['old']);
 </p>
 
 <p>
+メールアドレス
+<input
+  type="email"
+  name="email"
+  value="<?= htmlspecialchars($old['email'], ENT_QUOTES, 'UTF-8') ?>"
+>
+</p>
+
+<p>
 会社名
 <input
   type="text"
@@ -66,13 +75,11 @@ unset($_SESSION['errors'], $_SESSION['old']);
 </p>
 
 <button type="submit">登録</button>
-
 </form>
 
 <p>
 <a href="index.php">一覧へ戻る</a>
 </p>
-
 </div>
 
 </body>
